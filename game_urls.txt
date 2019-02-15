@@ -1,0 +1,15 @@
+All game end-points are available below:
+  - The space map: http://:serverip/:worldid/map
+  - The game parameters: http://:serverip/:worldid/parameters
+  - Init the fleet: http://:serverip/:worldid/:userkey/capital-ship/init
+  - Fleet data list: http://:serverip/:worldid/:userkey/fleet
+  - Get the current challenge: http://:serverip/:worldid/:userkey/capital-ship/challenge
+  - Create more energy with the challenge answer: http://:serverip/:worldid/:userkey/capital-ship/top-up/:code
+  - Create a new Battle Cruiser http://:serverip/:worldid/:userkey/capital-ship/create-battle-cruiser
+  - Create a new Energy Carrier http://:serverip/:worldid/:userkey/capital-ship/create-energy-carrier/:energyamount
+  - Launch a Space Probe from a Battle Cruiser http://:serverip/:worldid/:userkey/space-probe/:battlecruisershipuuid
+  - Move a spaceship http://:serverip/:worldid/:userkey/jump/:shipuuid/:targetpointlabel
+  - Transfer energy between two spaceships http://:serverip/:worldid/:userkey/energy-transfer/:ship1uuid/:ship2uuid/:amount
+  - Launch a bomb from a Battle Cruiser http://:serverip/:worldid/:userkey/bomb/:battlecruisershipuuid/:targetpointlabel
+  - See the current scoreboard http://:serverip/:worldid/:userkey/scoreboard
+  - See the final scores for the last 24 games http://:serverip/:worldid/:userkey/scores/:hourcode

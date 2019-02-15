@@ -1,1 +1,0 @@
-`str(random.sample(range(0, 100), 100))[1:-1].replace(" ", "")`
