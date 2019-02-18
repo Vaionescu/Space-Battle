@@ -1,64 +1,76 @@
 # Space Battle: Game API
 
-
-## Game Data
-
-### Say Hello
-
-```
-curl http://10.249.16.173:14561
-```
-
 ## Server Answers
-
-With the exception of
-
-- `/game/v1/map`, and
-- `/game/v1/parameters`
-
-All answers from the API are JSON objects. Either
+All answers from the API are JSON objects:
 
 ```
 {
-    "status"    => 200
-    "answer"    => ({data relevant, answer} to the request itself)
-    "userFleet" => FleetReport
+    "status" (status code) => 0 (OK) / 1 (ERROR)
+    "answer" (JSON array)  => (the requested data; if status is 1 then error code)
 }
 ```
 
-or
+The server always returns HTTP 200 `application/json`, but indicates in the JSON answer if there were any errors. This means that the client only needs to manipulate the JSON payload, and not worry about HTTP errors.
+
+The error code is a hexadecimal string of length 8. All error codes are listed below.
+
+### Retrieve a list of the available worlds
+
+```
+curl http://:serverip/world-list
+```
+
+Example of returned answer:
 
 ```
 {
-    "status"  => HTTP Error Code
-    "error"   => String # hexadecimal, length 8
-    "message" => String
+    "status": 0,
+    "answer": {
+      "count": 2,
+      "world": [
+        {
+          "type": "bot-wars",
+          "id": 23
+        },
+        {
+          "type": "realtime-pve",
+          "id": 54
+        }
+      ]
+    }
 }
 ```
 
-Which indicate, respectively, correct call, or a server 4XX kind of error. The server always returns HTTP 200 `application/json` but indicate in the JSON answer itself what the HTTP 4XX error is. This means that the client only needs to manipulate the JSON payload, and not HTTP error codes and JSON.
+### Connect to a world
 
-The error is an hexadecimal string of length 8. This is what you should be pattern matching against if your code needs to handle error types. Do not match against the messages themselves, are they are not stable.
+In order to interact with a world, you need a SessionKey. This is the endpoint from which you can receive a SessionKey.
 
-### Get your user key
+```
+curl http://:serverip/:worldid/:userkey/connect
+```
 
-A user key used to be available using self service end point, but due to greater exposure you should now request your key directly from Pascal.
+Example of returned answer:
 
-Be careful not to leak your userkey on chat if you copy paste urls.
+```
+{
+    "status": 0,
+    "answer": [
+      "session-key": "dfed59cd-12e2-40b4-bf79-c8c9cf16a8fc"
+    ]
+}
+```
 
 ### Get the current map
 
 ```
-curl http://10.249.16.173:14561/game/v1/map
+curl http://:serverip/:worldid/:sessionkey/map
 ```
 
 The map has the following structure
 
 ```
-Map: {
-  "mapId"     : "0fa91da4-788e-458e-b8b0-4e57d31ffbee"
-  "timestamp" : "2018-09-15-21"
-  "points"    : Array[MapPoint]
+"map": {
+  "points": Array[MapPoint]
 }
 
 MapPoint: {

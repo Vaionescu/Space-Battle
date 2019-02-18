@@ -1,15 +1,21 @@
-All game end-points are available below:
-  - The space map: http://:serverip/:worldid/map
-  - The game parameters: http://:serverip/:worldid/parameters
-  - Init the fleet: http://:serverip/:worldid/:userkey/capital-ship/init
-  - Fleet data list: http://:serverip/:worldid/:userkey/fleet
-  - Get the current challenge: http://:serverip/:worldid/:userkey/capital-ship/challenge
-  - Create more energy with the challenge answer: http://:serverip/:worldid/:userkey/capital-ship/top-up/:code
-  - Create a new Battle Cruiser http://:serverip/:worldid/:userkey/capital-ship/create-battle-cruiser
-  - Create a new Energy Carrier http://:serverip/:worldid/:userkey/capital-ship/create-energy-carrier/:energyamount
-  - Launch a Space Probe from a Battle Cruiser http://:serverip/:worldid/:userkey/space-probe/:battlecruisershipuuid
-  - Move a spaceship http://:serverip/:worldid/:userkey/jump/:shipuuid/:targetpointlabel
-  - Transfer energy between two spaceships http://:serverip/:worldid/:userkey/energy-transfer/:ship1uuid/:ship2uuid/:amount
-  - Launch a bomb from a Battle Cruiser http://:serverip/:worldid/:userkey/bomb/:battlecruisershipuuid/:targetpointlabel
-  - See the current scoreboard http://:serverip/:worldid/:userkey/scoreboard
-  - See the final scores for the last 24 games http://:serverip/:worldid/:userkey/scores/:hourcode
+All game end-points are listed below.
+
+Available commands:
+  - Retrieve a list of worlds: http://:server-ip/world-list
+  - Connect to a world: http://:server-ip/:world-id/:user-key/connect
+  - Retrieve the game map: http://:server-ip/:world-id/:session-key/map
+  - Spawn your Capital Ship: http://:server-ip/:world-id/:session-key/capital-ship/init
+  - Fetch your fleet data: http://:server-ip/:world-id/:session-key/fleet
+  - Build a new Battle Cruiser http://:server-ip/:world-id/:session-key/capital-ship/create-battle-cruiser
+  - Build a new Energy Carrier http://:server-ip/:world-id/:session-key/capital-ship/create-energy-carrier/:energy-amount
+  - Launch a Space Probe http://:server-ip/:world-id/:session-key/space-probe/:battle-cruiser-uuid
+  - Launch a Bomb
+  http://:server-ip/:world-id/:session-key/bomb/:battle-cruiser-uuid/:bomb-type/:target-point
+  - Move a spaceship http://:server-ip/:world-id/:session-key/jump/:ship-uuid/:target-point
+  - Transfer energy between two spaceships http://:server-ip/:world-id/:session-key/energy-transfer/:ship1-uuid/:ship2-uuid/:amount
+  - Retrieve the current game's scoreboard http://:server-ip/:world-id/:session-key/scoreboard
+  - Retrieve the final scoreboards for the last 24 games http://:server-ip/:world-id/scores/:hourcode
+
+"Bot Wars"-only available commands:
+  - Get the current challenge: http://:server-ip/:world-id/:session-key/capital-ship/challenge
+  - Create more energy with the challenge answer: http://:server-ip/:world-id/:session-key/capital-ship/challenge-answer/:code
