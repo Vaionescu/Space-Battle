@@ -52,3 +52,4 @@ The rough roadmap is:
 
 ## Acknowledgements
  - The original game (one-world game server code only, written in Ruby) is the result of the hard work of the people at Guardian. It will be further developed by myself.
+ - The source code for the original game can be found here: https://github.com/guardian/techtime/tree/master/Coding%20Challenges/Space-Battle
